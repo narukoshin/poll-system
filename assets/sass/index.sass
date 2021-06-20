@@ -1,0 +1,49 @@
+$main_color: #c8cdf2
+$dark_color: #182952
+    
+body
+    background-color: #272836
+
+@media screen and (max-width:768px)
+    .question-option
+        font-size: 11pt !important
+
+#app
+    display: table
+    margin: 10em auto
+    .app-question
+        color: $main_color
+        font-family: Arial, sans-serif
+        font-weight: 700
+        text-transform: uppercase
+        font-size: 24pt
+        text-align: center
+        margin-bottom: 2em
+    .question-options
+        margin: 0 auto
+        display: table
+        width: 100%
+        text-align: center
+    .question-option
+        margin-top: 1em
+        transition-property: color, background-color, border-color, transform
+        transition-duration: 500ms
+        transform-style: ease-in-out
+        &:hover
+            background-color: #243b51
+            border-color: #006bd9
+            color: #006bd9
+            transform: scale(1.1)
+        font-family: Arial, Helvetica, sans-serif
+        text-transform: uppercase
+        font-weight: 500
+        font-size: 16pt
+        display: inline-block
+        border: 2px solid #243b51
+        padding: 20px 120px 20px 120px
+        border-radius: 10px
+        color: $main_color
+        margin-left: 1em
+        margin-right: 1em
+        cursor: pointer
+        user-select: none
