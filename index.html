@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Some shitty idea | fast coding xd</title>
+    <link rel='stylesheet' href='assets/css/index.css'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name='author' content='Yuu Hirokabe @ www.yuuhiroka.be'>
+</head>
+<body>
+    <div id='app'>
+        <div class='app-question'>{{question}}</div>
+        <div class='question-options'>
+            <div class='question-option' v-for='o, id in options' @click='submitQuestion(pollid, o)' :id='id'>
+                <span>{{ o }}</span>
+            </div>
+        </div>
+    </div>
+    <script src='node_modules/vue/dist/vue.min.js'></script>
+    <script src='node_modules/axios/dist/axios.min.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data(){
+                return {question: null,options: null,pollid: null}
+            },
+            methods: {
+                submitQuestion(id, option){
+                    return axios.post('api/submitpoll', {pollid: id,option: option}).then(res => {console.log(res.data)})
+                },
+                getPoll(){
+                    return axios.get('api/getpoll').then(res => {
+                        console.log(res.data)
+                        this.question   = res.data.question
+                        this.options    = res.data.options
+                        this.pollid     = res.data.pollid
+                        document.title  = res.data.question
+                    })
+                }
+            },
+            created(){
+                this.getPoll()
+            }
+        })
+    </script>
+</body>
+</html>
